@@ -7,6 +7,7 @@
 const form = document.querySelector('#registrar')
 const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
+const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
 let listItem = ''
 
@@ -51,8 +52,7 @@ function appendListItems () {
     txtInput.value = ''
 }
 
-function hideNonRespondees () {
-    const main = document.getElementById('main')
+function hideNonRespondeesLabel () {
     if (main.children.length <= 2) {
         const arr = []
         const label = document.createElement('label')
@@ -72,10 +72,25 @@ function hideNonRespondees () {
 
 ////////// EVENT LISTENERS //////////
 
+main.addEventListener('click', e => {
+    if (e.target.tagName === 'INPUT') {
+        const listItems = document.querySelectorAll('li')
+        for (let i = 0; i < listItems.length; i++) {
+            const firstChild = listItems[i].firstElementChild
+            const checkbox = firstChild.nextElementSibling
+            if (!checkbox.checked && listItems[i].style.display === 'flex') {
+                listItems[i].style.display = 'none'
+            } else if (!checkbox.checked && listItems[i].style.display === 'none') {
+                listItems[i].style.display = 'flex'
+            }
+        }
+    }
+})
+
 form.addEventListener('submit', e => {
     e.preventDefault()
     appendListItems()
-    hideNonRespondees()
+    hideNonRespondeesLabel()
 })
 
 // listItem.addEventListener('click', e => {
