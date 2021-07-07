@@ -1,6 +1,5 @@
 // Fix spaces in id value when 3+ words 
 // ID names for inputs (to target in other event listeners?)
-// Hide Non-Respondees Behaviour 
 // Edit btn click - disabled removed from name input (add b4) | edit btn text-content change to 'save' (when clicked - reverts back to edit + saves name input text-content as updated value by re-adding disabled attr) | 
 // Remove btn click - removes whole <li> parent 
 
@@ -67,23 +66,20 @@ function hideNonRespondeesLabel () {
     }
 }
 
+//////////////// EVENT LISTENERS //////////////////////
 
-////////// EVENT LISTENERS //////////
-
-// main.addEventListener('click', e => {
-//     if (e.target.tagName === 'INPUT') {
-//         const listItems = document.querySelectorAll('li')
-//         for (let i = 0; i < listItems.length; i++) {
-//             const firstChild = listItems[i].firstElementChild
-//             const checkbox = firstChild.nextElementSibling
-//             if (!checkbox.checked && listItems[i].style.display === 'flex') {
-//                 listItems[i].style.display = 'none'
-//             } else if (!checkbox.checked && listItems[i].style.display === 'none') {
-//                 listItems[i].style.display = 'flex'
-//             }
-//         }
-//     }
-// })
+main.addEventListener('click', e => {
+    if (e.target.tagName === 'INPUT' && e.target.id === 'non-responded') {
+        const listItems = document.querySelectorAll('li')
+        for (let i = 0; i < listItems.length; i++) {
+            const firstChild = listItems[i].firstElementChild
+            const checkbox = firstChild.nextElementSibling
+            if (!checkbox.checked) {
+                listItems[i].classList.toggle('hidden')
+            }
+        }
+    }
+})
 
 form.addEventListener('submit', e => {
     e.preventDefault()

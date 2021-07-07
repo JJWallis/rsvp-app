@@ -138,6 +138,10 @@ div > label {
   color: rgba(88, 183, 205, 1);
 }
 
+.hidden {
+  display: none;
+}
+
 /* ================================= 
   Media Queries
 ==================================== */
@@ -237,5 +241,3 @@ div > label {
     flex-basis: 20%;
   }
 }
-
-/* //////JS CLASSES ///// */
