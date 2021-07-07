@@ -1,11 +1,13 @@
 // Fix spaces in id value when 3+ words 
 // ID names for inputs (to target in other event listeners?)
+// 
 // Edit btn click - disabled removed from name input (add b4 + class) 
 
 const form = document.querySelector('#registrar')
 const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
 const ul = document.querySelector('#invitedList')
+let listItem = ''
 
 function appendListItems () {
     const arr = []
@@ -45,13 +47,17 @@ function appendListItems () {
         }
         li.appendChild(btn)
     }
+    listItem = li
     txtInput.value = ''
 }
-
 
 ////////// EVENT LISTENERS //////////
 
 form.addEventListener('submit', e => {
     e.preventDefault()
     appendListItems()
+})
+
+listItem.addEventListener('click', e => {
+
 })
