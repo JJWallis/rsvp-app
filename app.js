@@ -1,31 +1,38 @@
 // Fix spaces in id value when 3+ words 
-// ID names for inputs 
-// Contentidable attr in html for name input - when usr clicks button that gets added to name input 
-// Loop over all created els + appench to li parent 
-// Arrow function to create each element (refactored - store call on a new var each time)
+// ID names for inputs (to target in other event listeners?)
+// Edit btn click - disabled removed from name input (add b4 + class) 
 
 const form = document.querySelector('#registrar')
-const txtInput = document.querySelector('input[type="text"]')
+const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
 const ul = document.querySelector('#invitedList')
 
 function appendListItems () {
-    const li = document.createElement('li')
-    const name = document.createElement('input')
-    const label = document.createElement('label')
-    const checked = document.createElement('input')
+    const arr = []
+    const element = type => document.createElement(type)
+    const li = element('li')
+    const name = element('input')
+    const label = element('label')
+    const checked = element('input')
     const nameConverted = txtInput.value.replace(' ', '_')
+
     name.type = 'text'
     name.value = `${txtInput.value}`
+    arr.push(name)
+
     label.textContent = 'Confirmed'
     label.setAttribute("for", nameConverted)
+    arr.push(label)
+
     checked.type = 'checkbox'
     checked.id = nameConverted
+    arr.push(checked)
 
     ul.appendChild(li)
-    li.appendChild(name)
-    li.appendChild(label)
-    li.appendChild(checked)
+
+    for (let i = 0; i < arr.length; i++) {
+        li.appendChild(arr[i])
+    }
 
     for (let i = 0; i < 2; i++) {
         const btn = document.createElement('button')
