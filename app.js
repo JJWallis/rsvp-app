@@ -1,7 +1,7 @@
 // Fix spaces in id value when 3+ words 
 // ID names for inputs (to target in other event listeners?) 
 // Refactor - UL listener inside main? 
-// Edit btn click - disabled removed from name input (add b4) | edit btn text-content change to 'save' (when clicked - reverts back to edit + saves name input text-content as updated value by re-adding disabled attr) | 
+// Edit btn click - disabled attr (style - remove grey border) toggled on name input (input.toggleAttribute("disabled")) | edit btn text-content changes to 'save' (when clicked - reverts back to edit + saves name input text-content as updated value by toggling disabled attr) 
 // Remove btn click - removes whole <li> parent 
 
 const form = document.querySelector('#registrar')
@@ -21,6 +21,7 @@ function appendListItems () {
 
     name.type = 'text'
     name.value = `${txtInput.value}`
+    name.setAttribute('disabled', 'disabled')
 
     label.textContent = 'Confirmed'
     label.setAttribute("for", nameConverted)
@@ -92,6 +93,6 @@ ul.addEventListener('click', e => {
         if (e.target.tagName === 'INPUT') {
             if (e.target.type === 'checkbox') {
                 e.target.parentNode.classList.toggle('responded')
-            }
+            } 
         }
 })
