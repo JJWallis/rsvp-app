@@ -1,5 +1,6 @@
 // Fix spaces in id value when 3+ words 
-// ID names for inputs (to target in other event listeners?)
+// ID names for inputs (to target in other event listeners?) 
+// Refactor - UL listener inside main? 
 // Edit btn click - disabled removed from name input (add b4) | edit btn text-content change to 'save' (when clicked - reverts back to edit + saves name input text-content as updated value by re-adding disabled attr) | 
 // Remove btn click - removes whole <li> parent 
 
@@ -68,23 +69,23 @@ function hideNonRespondeesLabel () {
 
 //////////////// EVENT LISTENERS //////////////////////
 
+form.addEventListener('submit', e => {
+    e.preventDefault()
+    appendListItems()
+    hideNonRespondeesLabel()
+})
+
 main.addEventListener('click', e => {
     if (e.target.tagName === 'INPUT' && e.target.id === 'non-responded') {
         const listItems = document.querySelectorAll('li')
         for (let i = 0; i < listItems.length; i++) {
-            const firstChild = listItems[i].firstElementChild
-            const checkbox = firstChild.nextElementSibling
+            const children = listItems[i].children
+            const checkbox = children[2]
             if (!checkbox.checked) {
                 listItems[i].classList.toggle('hidden')
             }
         }
     }
-})
-
-form.addEventListener('submit', e => {
-    e.preventDefault()
-    appendListItems()
-    hideNonRespondeesLabel()
 })
 
 ul.addEventListener('click', e => {
