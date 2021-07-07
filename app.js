@@ -1,6 +1,6 @@
 // Fix spaces in id value when 3+ words 
 // ID names for inputs (to target in other event listeners?)
-// Checked input - if selected (pseduo class?) - label + outline turns light-blue (JS Class - toggle each time)
+// Hide Non-Respondees Behaviour 
 // Edit btn click - disabled removed from name input (add b4) | edit btn text-content change to 'save' (when clicked - reverts back to edit + saves name input text-content as updated value by re-adding disabled attr) | 
 // Remove btn click - removes whole <li> parent 
 
@@ -9,7 +9,6 @@ const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
 const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
-let listItem = ''
 
 function appendListItems () {
     const arr = []
@@ -48,7 +47,6 @@ function appendListItems () {
         }
         li.appendChild(btn)
     }
-    listItem = li
     txtInput.value = ''
 }
 
@@ -72,20 +70,20 @@ function hideNonRespondeesLabel () {
 
 ////////// EVENT LISTENERS //////////
 
-main.addEventListener('click', e => {
-    if (e.target.tagName === 'INPUT') {
-        const listItems = document.querySelectorAll('li')
-        for (let i = 0; i < listItems.length; i++) {
-            const firstChild = listItems[i].firstElementChild
-            const checkbox = firstChild.nextElementSibling
-            if (!checkbox.checked && listItems[i].style.display === 'flex') {
-                listItems[i].style.display = 'none'
-            } else if (!checkbox.checked && listItems[i].style.display === 'none') {
-                listItems[i].style.display = 'flex'
-            }
-        }
-    }
-})
+// main.addEventListener('click', e => {
+//     if (e.target.tagName === 'INPUT') {
+//         const listItems = document.querySelectorAll('li')
+//         for (let i = 0; i < listItems.length; i++) {
+//             const firstChild = listItems[i].firstElementChild
+//             const checkbox = firstChild.nextElementSibling
+//             if (!checkbox.checked && listItems[i].style.display === 'flex') {
+//                 listItems[i].style.display = 'none'
+//             } else if (!checkbox.checked && listItems[i].style.display === 'none') {
+//                 listItems[i].style.display = 'flex'
+//             }
+//         }
+//     }
+// })
 
 form.addEventListener('submit', e => {
     e.preventDefault()
@@ -93,6 +91,10 @@ form.addEventListener('submit', e => {
     hideNonRespondeesLabel()
 })
 
-// listItem.addEventListener('click', e => {
-
-// })
+ul.addEventListener('click', e => {
+        if (e.target.tagName === 'INPUT') {
+            if (e.target.type === 'checkbox') {
+                e.target.parentNode.classList.toggle('responded')
+            }
+        }
+})
