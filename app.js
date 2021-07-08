@@ -1,5 +1,3 @@
-// Fix spaces in id value when 3+ words - regular expression 
-
 const form = document.querySelector('#registrar')
 const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
@@ -73,7 +71,7 @@ form.addEventListener('submit', e => {
     appendListItems()
 })
 
-main.addEventListener('click', e => {
+main.addEventListener('change', e => {
     const listItems = document.querySelectorAll('li')
     if (e.target.tagName === 'INPUT' && e.target.id === 'non-responded') {
         for (let i = 0; i < listItems.length; i++) {
