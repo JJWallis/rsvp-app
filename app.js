@@ -1,3 +1,8 @@
+// Refactor - use funcs + store in an obj (arrow syntax) 
+// Label changing - 'confirm' to 'confirm' | text in label is a text node (teachers notes)
+// Validation -  duplication + whatever else 
+// When hide non respondees checkbox active - remove checkbox in all 'checked' <li> s
+
 const form = document.querySelector('#registrar')
 const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
