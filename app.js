@@ -7,7 +7,6 @@ const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
 const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
-const listItems = document.querySelectorAll('li')
 
 function appendListItems () {
     const arr = []
@@ -76,6 +75,7 @@ form.addEventListener('submit', e => {
 })
 
 main.addEventListener('click', e => {
+    const listItems = document.querySelectorAll('li')
     if (e.target.tagName === 'INPUT' && e.target.id === 'non-responded') {
         for (let i = 0; i < listItems.length; i++) {
             const children = listItems[i].children
