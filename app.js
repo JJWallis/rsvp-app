@@ -1,14 +1,13 @@
 // Fix spaces in id value when 3+ words 
 // ID names for inputs (to target in other event listeners?) 
-// Refactor - UL listener inside main? 
-// Edit btn click - disabled attr (style - remove grey border) toggled on name input (input.toggleAttribute("disabled")) | edit btn text-content changes to 'save' (when clicked - reverts back to edit + saves name input text-content as updated value by toggling disabled attr) 
-// Remove btn click - removes whole <li> parent 
+// Refactor - UL listener inside main?  
 
 const form = document.querySelector('#registrar')
 const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
 const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
+const listItems = document.querySelectorAll('li')
 
 function appendListItems () {
     const arr = []
@@ -78,7 +77,6 @@ form.addEventListener('submit', e => {
 
 main.addEventListener('click', e => {
     if (e.target.tagName === 'INPUT' && e.target.id === 'non-responded') {
-        const listItems = document.querySelectorAll('li')
         for (let i = 0; i < listItems.length; i++) {
             const children = listItems[i].children
             const checkbox = children[2]
@@ -90,9 +88,25 @@ main.addEventListener('click', e => {
 })
 
 ul.addEventListener('click', e => {
-        if (e.target.tagName === 'INPUT') {
-            if (e.target.type === 'checkbox') {
-                e.target.parentNode.classList.toggle('responded')
+        let target = e.target
+        let parent = target.parentNode
+        if (target.tagName === 'INPUT') {
+            if (target.type === 'checkbox') {
+                parent.classList.toggle('responded')
             } 
         }
+        
+        if (target.tagName === 'BUTTON') {
+            if (target.id === 'btn-edit' ) {
+                if (target.textContent === 'edit') {
+                    target.textContent = 'save'
+                    parent.firstElementChild.toggleAttribute('disabled')
+              } else {
+                    target.textContent = 'edit'
+                    parent.firstElementChild.toggleAttribute('disabled')
+                }
+            } else {
+                ul.removeChild(parent)
+            }
+        } 
 })
