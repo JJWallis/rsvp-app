@@ -1,6 +1,4 @@
-// Fix spaces in id value when 3+ words 
-// ID names for inputs (to target in other event listeners?) 
-// Refactor - UL listener inside main?  
+// Fix spaces in id value when 3+ words - regular expression 
 
 const form = document.querySelector('#registrar')
 const txtInput = document.querySelector('#name-submit')
@@ -59,10 +57,11 @@ function hideNonRespondeesLabel () {
         checked.type = 'checkbox'
         checked.id = 'non-responded'
         arr.push(label, checked)
-                                        //////// .ForEACH here!
+
         for (let i = 0; i < arr.length; i++) {
             main.insertBefore(arr[i], ul)
         }
+
     } else {
         const checkbox = document.getElementById('non-responded')
         const previousSibling = checkbox.previousElementSibling
