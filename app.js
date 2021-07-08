@@ -49,6 +49,7 @@ function appendListItems () {
 
 function hideNonRespondeesLabel () {
         const arr = []
+        const parent = document.createElement('div')
         const label = document.createElement('label')
         const checked = document.createElement('input')
         label.textContent = `Hide those who haven't responded`
@@ -58,8 +59,9 @@ function hideNonRespondeesLabel () {
         arr.push(label, checked)
 
         for (let i = 0; i < arr.length; i++) {
-            main.insertBefore(arr[i], ul)
+            parent.appendChild(arr[i], ul)
         }
+        main.insertBefore(parent, ul)
     }
 
 hideNonRespondeesLabel()
