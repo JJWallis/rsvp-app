@@ -91,14 +91,18 @@ main.addEventListener('click', e => {
     }
 })
 
+ul.addEventListener('change', e => {
+    const parent = e.target.parentNode
+    if (e.target.checked) {
+        parent.classList.toggle('responded')
+    } else {
+        parent.classList.toggle('responded')
+    }
+})
+
 ul.addEventListener('click', e => {
         let target = e.target
         let parent = target.parentNode
-        if (target.tagName === 'INPUT') {
-            if (target.type === 'checkbox') {
-                parent.classList.toggle('responded')
-            } 
-        }
         
         if (target.tagName === 'BUTTON') {
             if (target.id === 'btn-edit' ) {
