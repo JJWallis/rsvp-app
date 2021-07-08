@@ -48,7 +48,6 @@ function appendListItems () {
 }
 
 function hideNonRespondeesLabel () {
-    if (ul.children.length > 0) {
         const arr = []
         const label = document.createElement('label')
         const checked = document.createElement('input')
@@ -61,21 +60,15 @@ function hideNonRespondeesLabel () {
         for (let i = 0; i < arr.length; i++) {
             main.insertBefore(arr[i], ul)
         }
-
-    } else {
-        const checkbox = document.getElementById('non-responded')
-        const previousSibling = checkbox.previousElementSibling
-        main.removeChild(checkbox)
-        main.removeChild(previousSibling)
     }
-}
+
+hideNonRespondeesLabel()
 
 //////////////// EVENT LISTENERS //////////////////////
 
 form.addEventListener('submit', e => {
     e.preventDefault()
     appendListItems()
-    hideNonRespondeesLabel()
 })
 
 main.addEventListener('click', e => {
@@ -115,7 +108,6 @@ ul.addEventListener('click', e => {
                 }
             } else {
                 ul.removeChild(parent)
-                hideNonRespondeesLabel()
             }
         } 
 })
