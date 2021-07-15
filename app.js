@@ -1,4 +1,4 @@
-// Refactor - use funcs + store in an obj (arrow syntax) 
+// Style disabled input state 
 // Label changing - 'confirm' to 'confirm' | text in label is a text node (teachers notes)
 // Validation -  duplication + whatever else 
 // When hide non respondees checkbox active - remove checkbox in all 'checked' <li> s
@@ -31,9 +31,8 @@ function appendListItems () {
     checked.id = nameConverted
     editBtn.id = 'btn-edit'
     removeBtn.id = 'btn-remove'
-
-    arr.push(name, label, checked, editBtn, removeBtn)
     ul.appendChild(li)
+    arr.push(name, label, checked, editBtn, removeBtn)
 
     for (let i = 0; i < arr.length; i++) 
         li.appendChild(arr[i])
@@ -42,18 +41,15 @@ function appendListItems () {
 }
 
 function hideNonRespondeesLabel () {
-        const arr = []
         const parent = element('div')
         const label = element('label', 'textContent', `Hide those who haven't responded`)
         const checked = element('input', 'type', 'checkbox')
 
         label.setAttribute('for', 'non-responded')
         checked.id = 'non-responded'
-        arr.push(label, checked)
 
-        for (let i = 0; i < arr.length; i++) 
-            parent.appendChild(arr[i], ul)
-        
+        parent.appendChild(label, ul)
+        parent.appendChild(checked, ul)
         main.insertBefore(parent, ul)
     }
 
@@ -89,12 +85,11 @@ ul.addEventListener('click', e => {
         
         if (target.tagName === 'BUTTON') {
             if (target.id === 'btn-edit' ) {
+                parent.firstElementChild.toggleAttribute('disabled')
                 if (target.textContent === 'edit') {
                     target.textContent = 'save'
-                    parent.firstElementChild.toggleAttribute('disabled')
               } else {
                     target.textContent = 'edit'
-                    parent.firstElementChild.toggleAttribute('disabled')
                 }
             } else {
                 ul.removeChild(parent)
