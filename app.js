@@ -9,61 +9,51 @@ const btnSubmit = document.querySelector('#btn-submit')
 const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
 
+function element (type, property, value) {
+    const el = document.createElement(type)
+    el[property] = value
+    return el
+}
+
 function appendListItems () {
     const arr = []
-    const element = type => document.createElement(type)
     const li = element('li')
-    const name = element('input')
-    const label = element('label')
-    const checked = element('input')
+    const name = element('input', 'type', 'text')
+    const label = element('label', 'textContent', 'Confirmed')
+    const checked = element('input', 'type', 'checkbox')
+    const editBtn = element('button', 'textContent', 'edit')
+    const removeBtn = element('button', 'textContent', 'remove')
     const nameConverted = txtInput.value.replace(' ', '_')
 
-    name.type = 'text'
     name.value = `${txtInput.value}`
     name.setAttribute('disabled', 'disabled')
-
-    label.textContent = 'Confirmed'
     label.setAttribute("for", nameConverted)
-
-    checked.type = 'checkbox'
     checked.id = nameConverted
+    editBtn.id = 'btn-edit'
+    removeBtn.id = 'btn-remove'
 
-    arr.push(name, label, checked)
-
+    arr.push(name, label, checked, editBtn, removeBtn)
     ul.appendChild(li)
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) 
         li.appendChild(arr[i])
-    }
-
-    for (let i = 0; i < 2; i++) {
-        const btn = document.createElement('button')
-        if (i < 1) {
-            btn.textContent = 'edit'
-            btn.id = 'btn-edit'
-        } else {
-            btn.textContent = 'remove'
-            btn.id = 'btn-remove'
-        }
-        li.appendChild(btn)
-    }
+    
     txtInput.value = ''
 }
 
 function hideNonRespondeesLabel () {
         const arr = []
-        const parent = document.createElement('div')
-        const label = document.createElement('label')
-        const checked = document.createElement('input')
-        label.textContent = `Hide those who haven't responded`
+        const parent = element('div')
+        const label = element('label', 'textContent', `Hide those who haven't responded`)
+        const checked = element('input', 'type', 'checkbox')
+
         label.setAttribute('for', 'non-responded')
-        checked.type = 'checkbox'
         checked.id = 'non-responded'
         arr.push(label, checked)
 
-        for (let i = 0; i < arr.length; i++) {
+        for (let i = 0; i < arr.length; i++) 
             parent.appendChild(arr[i], ul)
-        }
+        
         main.insertBefore(parent, ul)
     }
 
@@ -78,7 +68,7 @@ form.addEventListener('submit', e => {
 
 main.addEventListener('change', e => {
     const listItems = document.querySelectorAll('li')
-    if (e.target.tagName === 'INPUT' && e.target.id === 'non-responded') {
+    if (e.target.id === 'non-responded') {
         for (let i = 0; i < listItems.length; i++) {
             const children = listItems[i].children
             const checkbox = children[2]
@@ -90,12 +80,7 @@ main.addEventListener('change', e => {
 })
 
 ul.addEventListener('change', e => {
-    const parent = e.target.parentNode
-    if (e.target.checked) {
-        parent.classList.toggle('responded')
-    } else {
-        parent.classList.toggle('responded')
-    }
+    e.target.parentNode.classList.toggle('responded') 
 })
 
 ul.addEventListener('click', e => {
