@@ -1,4 +1,3 @@
-// Label changing - 'confirm' to 'confirmed' when checked | text in label is a text node! 
 // When hide non respondees checkbox active - remove checkbox in all 'checked' <li> s
 
 const form = document.querySelector('#registrar')
@@ -17,7 +16,7 @@ function appendListItems () {
     const arr = []
     const li = element('li')
     const name = element('input', 'type', 'text')
-    const label = element('label', 'textContent', 'Confirmed')
+    const label = element('label', 'textContent', 'Confirm')
     const checked = element('input', 'type', 'checkbox')
     const editBtn = element('button', 'textContent', 'edit')
     const removeBtn = element('button', 'textContent', 'remove')
@@ -74,7 +73,11 @@ main.addEventListener('change', e => {
 })
 
 ul.addEventListener('change', e => {
-    e.target.parentNode.classList.toggle('responded') 
+    const target = e.target
+    const label = target.previousElementSibling
+    const labelText = value => label.textContent = value
+    target.parentNode.classList.toggle('responded')
+    label.textContent === 'Confirm' ? labelText('Confirmed') : labelText('Confirm')
 })
 
 ul.addEventListener('click', e => {
