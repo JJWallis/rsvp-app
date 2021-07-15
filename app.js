@@ -1,5 +1,3 @@
-// When hide non respondees checkbox active - remove checkbox in all 'checked' <li> s
-
 const form = document.querySelector('#registrar')
 const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
@@ -60,13 +58,17 @@ form.addEventListener('submit', e => {
 })
 
 main.addEventListener('change', e => {
+    const hidden = el => el.classList.toggle('hidden')
     const listItems = document.querySelectorAll('li')
     if (e.target.id === 'non-responded') {
         for (let i = 0; i < listItems.length; i++) {
             const children = listItems[i].children
             const checkbox = children[2]
             if (!checkbox.checked) {
-                listItems[i].classList.toggle('hidden')
+                hidden(listItems[i])
+            } else {
+                hidden(checkbox)
+                hidden(checkbox.previousElementSibling)
             }
         }
     }
