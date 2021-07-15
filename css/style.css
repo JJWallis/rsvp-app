@@ -141,7 +141,7 @@ div > label {
   display: none;
 }
 
-input:enabled {
+li input[type="text"]:enabled {
   border: 1px dotted rgba(0, 0, 0, 0.2);
 }
 

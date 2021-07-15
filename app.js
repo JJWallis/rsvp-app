@@ -1,5 +1,4 @@
-// Label changing - 'confirm' to 'confirm' | text in label is a text node (teachers notes)
-// Validation -  duplication + whatever else 
+// Label changing - 'confirm' to 'confirmed' when checked | text in label is a text node! 
 // When hide non respondees checkbox active - remove checkbox in all 'checked' <li> s
 
 const form = document.querySelector('#registrar')
