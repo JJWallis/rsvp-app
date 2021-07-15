@@ -88,7 +88,6 @@ li input[type="text"] {
 li input[type="text"] {
   padding: 0.2em;
   width: 95%;
-  border: 1px dotted rgba(0, 0, 0, 0.2);
 }
 li label {
   font-size: 0.9em;
@@ -142,8 +141,8 @@ div > label {
   display: none;
 }
 
-input:disabled {
-  border: none;
+input:enabled {
+  border: 1px dotted rgba(0, 0, 0, 0.2);
 }
 
 /* ================================= 

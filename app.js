@@ -1,4 +1,3 @@
-// Style disabled input state 
 // Label changing - 'confirm' to 'confirm' | text in label is a text node (teachers notes)
 // Validation -  duplication + whatever else 
 // When hide non respondees checkbox active - remove checkbox in all 'checked' <li> s
