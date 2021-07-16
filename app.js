@@ -70,7 +70,7 @@ form.addEventListener('submit', e => {
         : []
     const name = txtInput.value.replace(' ', '')
     localStorageArr.push(name)
-    localStorage.names = JSON.stringify(localStorageArr) // this is overiding array in local storage!!
+    localStorage.names = JSON.stringify(localStorageArr) 
     appendListItems()
 })
 
@@ -117,5 +117,6 @@ ul.addEventListener('click', e => {
         } 
 })
 
-// Replace method or regular expression - remove all space in name input value with empty strings or underscore 
 // Problem 2 - each time usr clicks btns (remove or edit) - update localStorageArr 
+// Refactor 
+// Regular expression for name input validation 
