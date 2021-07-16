@@ -3,7 +3,6 @@ const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
 const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
-const localStorageArr = []
 
 function element (type, property, value) {
     const el = document.createElement(type)
@@ -51,11 +50,26 @@ function hideNonRespondeesLabel () {
 
 hideNonRespondeesLabel()
 
+function localStorageState () {
+    if (localStorage.length > 0) {
+        const arr = JSON.parse( localStorage.getItem('names') )
+        for (let i = 0; i < arr.length; i++) 
+            appendListItems(arr[i])
+    }
+}
+
+localStorageState()
+
+// localStorage.clear()
+
 //////////////// EVENT LISTENERS //////////////////////
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-    localStorageArr.push(txtInput.value)
+    const localStorageArr = localStorage.length > 0 ? JSON.parse( localStorage.getItem('names') ) 
+        : []
+    const name = txtInput.value.replace(' ', '')
+    localStorageArr.push(name)
     localStorage.names = JSON.stringify(localStorageArr) // this is overiding array in local storage!!
     appendListItems()
 })
@@ -102,18 +116,6 @@ ul.addEventListener('click', e => {
             }
         } 
 })
-
-function localStorageState () {
-    if (localStorage.length > 0) {
-        const arr = JSON.parse( localStorage.getItem('names') )
-        for (let i = 0; i < arr.length; i++) 
-            appendListItems(arr[i])
-    }
-}
-
-localStorageState()
-
-// localStorage.clear()
 
 // Replace method or regular expression - remove all space in name input value with empty strings or underscore 
 // Problem 2 - each time usr clicks btns (remove or edit) - update localStorageArr 
