@@ -10,7 +10,7 @@ function element (type, property, value) {
     return el
 }
 
-function appendListItems () {
+function appendListItems (item) {
     const arr = []
     const li = element('li')
     const name = element('input', 'type', 'text')
@@ -54,6 +54,10 @@ hideNonRespondeesLabel()
 
 form.addEventListener('submit', e => {
     e.preventDefault()
+    const arr = []
+    arr.push(txtInput.value)
+    localStorage.names = JSON.stringify(arr)
+    console.log(JSON.stringify(arr))
     appendListItems()
 })
 
@@ -99,3 +103,21 @@ ul.addEventListener('click', e => {
             }
         } 
 })
+
+function localStorageState () {
+    const length = localStorage.length
+    if (length > 0) {
+        for (let i = 0; i < length; i++) {
+            const item = localStorage.getItem( localStorage.key(i) )
+            appendListItems(item)
+        }
+    }
+}
+
+localStorageState()
+
+// Create array containing name values usr inputs + save in local storage via JSON.stringify() - that way no need for dynamic naming 
+// When page loads again - JSON.parse() + loop over array to add each value to the list again 
+// Set name el value to item if item has a value 
+// Remove each value from localStorage in original localStorageState loop once passed to func
+// Problem - if usr refreshes page they loose everything as removed from localStorage
