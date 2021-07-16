@@ -19,12 +19,12 @@ function appendListItems (localStorageArr) {
     const checked = element('input', 'type', 'checkbox')
     const editBtn = element('button', 'textContent', 'edit')
     const removeBtn = element('button', 'textContent', 'remove')
-    const nameConverted = txtInput.value.replace(' ', '_')
 
-    name.value = `${txtInput.value}`
+    localStorageArr ? name.value = localStorageArr : name.value = txtInput.value
+
     name.setAttribute('disabled', 'disabled')
-    label.setAttribute("for", nameConverted)
-    checked.id = nameConverted
+    label.setAttribute("for", name)
+    checked.id = name
     editBtn.id = 'btn-edit'
     removeBtn.id = 'btn-remove'
     ul.appendChild(li)
@@ -56,7 +56,7 @@ hideNonRespondeesLabel()
 form.addEventListener('submit', e => {
     e.preventDefault()
     localStorageArr.push(txtInput.value)
-    localStorage.names = JSON.stringify(localStorageArr)
+    localStorage.names = JSON.stringify(localStorageArr) // this is overiding array in local storage!!
     appendListItems()
 })
 
@@ -104,10 +104,10 @@ ul.addEventListener('click', e => {
 })
 
 function localStorageState () {
-    const length = localStorage.length
-    if (length > 0) {
+    if (localStorage.length > 0) {
         const arr = JSON.parse( localStorage.getItem('names') )
-        appendListItems(arr)
+        for (let i = 0; i < arr.length; i++) 
+            appendListItems(arr[i])
     }
 }
 
@@ -115,9 +115,5 @@ localStorageState()
 
 // localStorage.clear()
 
-// When page loads again - JSON.parse() + loop over array to add each value to the list again | 
-// Passes that array value to smaller/separate name func - conditional to check whether parameter has value (will only happen once when code loads - every other time will run func call in submit even listener without an argument)
-// Set name el value to item if item has a value 
-// Remove each value from localStorage in original localStorageState loop once passed to func
-// Problem - if usr refreshes page they loose everything as removed from localStorage
+// Replace method or regular expression - remove all space in name input value with empty strings or underscore 
 // Problem 2 - each time usr clicks btns (remove or edit) - update localStorageArr 
