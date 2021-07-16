@@ -3,6 +3,7 @@ const txtInput = document.querySelector('#name-submit')
 const btnSubmit = document.querySelector('#btn-submit')
 const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
+const localStorageArr = []
 
 function element (type, property, value) {
     const el = document.createElement(type)
@@ -10,7 +11,7 @@ function element (type, property, value) {
     return el
 }
 
-function appendListItems (item) {
+function appendListItems (localStorageArr) {
     const arr = []
     const li = element('li')
     const name = element('input', 'type', 'text')
@@ -54,10 +55,8 @@ hideNonRespondeesLabel()
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-    const arr = []
-    arr.push(txtInput.value)
-    localStorage.names = JSON.stringify(arr)
-    console.log(JSON.stringify(arr))
+    localStorageArr.push(txtInput.value)
+    localStorage.names = JSON.stringify(localStorageArr)
     appendListItems()
 })
 
@@ -107,17 +106,18 @@ ul.addEventListener('click', e => {
 function localStorageState () {
     const length = localStorage.length
     if (length > 0) {
-        for (let i = 0; i < length; i++) {
-            const item = localStorage.getItem( localStorage.key(i) )
-            appendListItems(item)
-        }
+        const arr = JSON.parse( localStorage.getItem('names') )
+        appendListItems(arr)
     }
 }
 
 localStorageState()
 
-// Create array containing name values usr inputs + save in local storage via JSON.stringify() - that way no need for dynamic naming 
-// When page loads again - JSON.parse() + loop over array to add each value to the list again 
+// localStorage.clear()
+
+// When page loads again - JSON.parse() + loop over array to add each value to the list again | 
+// Passes that array value to smaller/separate name func - conditional to check whether parameter has value (will only happen once when code loads - every other time will run func call in submit even listener without an argument)
 // Set name el value to item if item has a value 
 // Remove each value from localStorage in original localStorageState loop once passed to func
 // Problem - if usr refreshes page they loose everything as removed from localStorage
+// Problem 2 - each time usr clicks btns (remove or edit) - update localStorageArr 
