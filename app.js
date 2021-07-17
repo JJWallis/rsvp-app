@@ -109,19 +109,19 @@ ul.addEventListener('click', e => {
         if (target.tagName === 'BUTTON') {
             const listItems = document.querySelectorAll('li')
             const index = [...listItems]
+            const liIndex = index.indexOf(li)
             if (target.id === 'btn-edit' ) {
                 li.firstElementChild.toggleAttribute('disabled')
                 if (target.textContent === 'edit') {
                     target.textContent = 'save'
               } else {
                     const name = li.children[0].value
-                    console.log(name)
                     const localStorageArr = JSON.parse(localStorage.getItem('names'))
                     target.textContent = 'edit'
-
+                    localStorageArr.splice(liIndex, 1, name)
+                    localStorage.names = JSON.stringify(localStorageArr)
                 }
-            } else {
-                const liIndex = index.indexOf(li) 
+            } else { 
                 const localStorageArr = JSON.parse(localStorage.getItem('names')) 
                 ul.removeChild(li)
                 localStorageArr.splice(liIndex, 1)
@@ -130,5 +130,5 @@ ul.addEventListener('click', e => {
         } 
 })
 
-// Ref collection of e.target li's children - use edited li as indexOf value - edit that same index value from localStorage
-// Create one single func that deals with local storage? - pass e.target as argument? 
+// Create one single func that deals with local storage - pass e.target as argument 
+// Store funcs in obj in global scope 
