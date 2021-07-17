@@ -11,7 +11,7 @@ function element (type, property, value) {
 }
 
 const jsonParse = () => JSON.parse( localStorage.getItem('names') ) 
-const jsonStringify = (localStorageArr) => JSON.stringify(localStorageArr) 
+const jsonStringify = (localStorageArr) => localStorage.names = JSON.stringify(localStorageArr) 
 
 function appendListItems (localStorageArr) {
     const arr = []
@@ -71,7 +71,7 @@ form.addEventListener('submit', e => {
     const localStorageArr = localStorage.length > 0 ? jsonParse() : []
     const name = txtInput.value.replace(' ', '')
     localStorageArr.push(name)
-    localStorage.names = jsonStringify(localStorageArr) 
+    jsonStringify(localStorageArr) 
     appendListItems()
 })
 
@@ -107,6 +107,15 @@ ul.addEventListener('click', e => {
         let li = target.parentNode
 
         if (target.tagName === 'BUTTON') {
+            const functions = {
+                edit: target => target.textContent = 'save',
+                save: (target, localStorageArr, name) => { 
+                    target.textContent = 'edit'
+                    localStorageArr.splice(liIndex, 1, name)
+                    jsonStringify(localStorageArr)
+                    }
+            }
+
             const listItems = document.querySelectorAll('li')
             const listItemsArr = [...listItems]
             const liIndex = listItemsArr.indexOf(li)
@@ -115,21 +124,13 @@ ul.addEventListener('click', e => {
 
             if (target.id === 'btn-edit' ) {
                 name.toggleAttribute('disabled')
-                if (target.textContent === 'edit') {
-                    target.textContent = 'save' // add obj func here!! 
-              } else {
-                    target.textContent = 'edit'
-                    localStorageArr.splice(liIndex, 1, name.value)
-                    localStorage.names = jsonStringify(localStorageArr)
-                }
+                functions[target.textContent](target, localStorageArr, liIndex, name.value)
             } else { 
                 ul.removeChild(li)
                 localStorageArr.splice(liIndex, 1)
-                localStorage.names = jsonStringify(localStorageArr)
+                jsonStringify(localStorageArr)
             }
         } 
 })
 
-// Add to stringify arrow func - 'localStorage.names = json.Stringify()' 
-// Store funcs in obj in global scope 
 // localStorage.clear() 
