@@ -94,25 +94,31 @@ main.addEventListener('change', e => {
 
 ul.addEventListener('change', e => {
     const target = e.target
-    const label = target.previousElementSibling
-    const labelText = value => label.textContent = value
-    target.parentNode.classList.toggle('responded')
-    label.textContent === 'Confirm' ? labelText('Confirmed') : labelText('Confirm')
+    if (target.type === 'checkbox') {
+        const label = target.previousElementSibling
+        const labelText = value => label.textContent = value
+        target.parentNode.classList.toggle('responded')
+        label.textContent === 'Confirm' ? labelText('Confirmed') : labelText('Confirm')
+    }
 })
 
 ul.addEventListener('click', e => {
         let target = e.target
         let li = target.parentNode
-        const listItems = document.querySelectorAll('li')
-        const index = [...listItems]
 
         if (target.tagName === 'BUTTON') {
+            const listItems = document.querySelectorAll('li')
+            const index = [...listItems]
             if (target.id === 'btn-edit' ) {
                 li.firstElementChild.toggleAttribute('disabled')
                 if (target.textContent === 'edit') {
                     target.textContent = 'save'
               } else {
+                    const name = li.children[0].value
+                    console.log(name)
+                    const localStorageArr = JSON.parse(localStorage.getItem('names'))
                     target.textContent = 'edit'
+
                 }
             } else {
                 const liIndex = index.indexOf(li) 
@@ -124,6 +130,5 @@ ul.addEventListener('click', e => {
         } 
 })
 
-// Each time usr clicks btns edit - update localStorageArr 
-// Ref collection of li's - use edited li as indexOf value - remove that same index value from localStorage
+// Ref collection of e.target li's children - use edited li as indexOf value - edit that same index value from localStorage
 // Create one single func that deals with local storage? - pass e.target as argument? 
