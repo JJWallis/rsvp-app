@@ -54,7 +54,7 @@ function hideNonRespondeesLabel () {
 
 hideNonRespondeesLabel()
 
-function localStorageRecover () {
+function restoreLocalStorage () {
     if (localStorage.length > 0) {
         const arr = jsonParse()
         for (let i = 0; i < arr.length; i++) 
@@ -62,7 +62,7 @@ function localStorageRecover () {
     }
 }
 
-localStorageRecover()
+restoreLocalStorage()
 
 //////////////// EVENT LISTENERS //////////////////////
 
@@ -116,7 +116,7 @@ ul.addEventListener('click', e => {
             if (target.id === 'btn-edit' ) {
                 name.toggleAttribute('disabled')
                 if (target.textContent === 'edit') {
-                    target.textContent = 'save'
+                    target.textContent = 'save' // add obj func here!! 
               } else {
                     target.textContent = 'edit'
                     localStorageArr.splice(liIndex, 1, name.value)
@@ -130,10 +130,6 @@ ul.addEventListener('click', e => {
         } 
 })
 
-// function localStorageBehaviour () {
-
-// }
-
-// localStorage.clear()
-// Create one single func that deals with local storage - pass e.target as argument 
+// Add to stringify arrow func - 'localStorage.names = json.Stringify()' 
 // Store funcs in obj in global scope 
+// localStorage.clear() 
