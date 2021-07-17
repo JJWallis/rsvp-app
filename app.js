@@ -18,8 +18,9 @@ function appendListItems (localStorageArr) {
     const checked = element('input', 'type', 'checkbox')
     const editBtn = element('button', 'textContent', 'edit')
     const removeBtn = element('button', 'textContent', 'remove')
+    const value = (el, data) => el.value = data
 
-    localStorageArr ? name.value = localStorageArr : name.value = txtInput.value
+    localStorageArr ? value(name, localStorageArr) : value(name, txtInput.value)
 
     name.setAttribute('disabled', 'disabled')
     label.setAttribute("for", name)
@@ -32,7 +33,7 @@ function appendListItems (localStorageArr) {
     for (let i = 0; i < arr.length; i++) 
         li.appendChild(arr[i])
     
-    txtInput.value = ''
+    value(txtInput, '')
 }
 
 function hideNonRespondeesLabel () {
@@ -117,6 +118,6 @@ ul.addEventListener('click', e => {
         } 
 })
 
-// Problem 2 - each time usr clicks btns (remove or edit) - update localStorageArr 
+// Each time usr clicks btns (remove or edit) - update localStorageArr 
 // Refactor 
-// Regular expression for name input validation 
+// Create one single func that deals with local storage? - pass e.target as argument? 
