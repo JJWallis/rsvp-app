@@ -10,6 +10,9 @@ function element (type, property, value) {
     return el
 }
 
+const jsonParse = () => JSON.parse( localStorage.getItem('names') ) 
+const jsonStringify = (localStorageArr) => JSON.stringify(localStorageArr) 
+
 function appendListItems (localStorageArr) {
     const arr = []
     const li = element('li')
@@ -51,27 +54,24 @@ function hideNonRespondeesLabel () {
 
 hideNonRespondeesLabel()
 
-function localStorageState () {
+function localStorageRecover () {
     if (localStorage.length > 0) {
-        const arr = JSON.parse( localStorage.getItem('names') )
+        const arr = jsonParse()
         for (let i = 0; i < arr.length; i++) 
             appendListItems(arr[i])
     }
 }
 
-localStorageState()
-
-// localStorage.clear()
+localStorageRecover()
 
 //////////////// EVENT LISTENERS //////////////////////
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-    const localStorageArr = localStorage.length > 0 ? JSON.parse( localStorage.getItem('names') ) 
-        : []
+    const localStorageArr = localStorage.length > 0 ? jsonParse() : []
     const name = txtInput.value.replace(' ', '')
     localStorageArr.push(name)
-    localStorage.names = JSON.stringify(localStorageArr) 
+    localStorage.names = jsonStringify(localStorageArr) 
     appendListItems()
 })
 
@@ -108,27 +108,32 @@ ul.addEventListener('click', e => {
 
         if (target.tagName === 'BUTTON') {
             const listItems = document.querySelectorAll('li')
-            const index = [...listItems]
-            const liIndex = index.indexOf(li)
+            const listItemsArr = [...listItems]
+            const liIndex = listItemsArr.indexOf(li)
+            const name = li.firstElementChild
+            const localStorageArr = jsonParse()
+
             if (target.id === 'btn-edit' ) {
-                li.firstElementChild.toggleAttribute('disabled')
+                name.toggleAttribute('disabled')
                 if (target.textContent === 'edit') {
                     target.textContent = 'save'
               } else {
-                    const name = li.children[0].value
-                    const localStorageArr = JSON.parse(localStorage.getItem('names'))
                     target.textContent = 'edit'
-                    localStorageArr.splice(liIndex, 1, name)
-                    localStorage.names = JSON.stringify(localStorageArr)
+                    localStorageArr.splice(liIndex, 1, name.value)
+                    localStorage.names = jsonStringify(localStorageArr)
                 }
             } else { 
-                const localStorageArr = JSON.parse(localStorage.getItem('names')) 
                 ul.removeChild(li)
                 localStorageArr.splice(liIndex, 1)
-                localStorage.names = JSON.stringify(localStorageArr)
+                localStorage.names = jsonStringify(localStorageArr)
             }
         } 
 })
 
+// function localStorageBehaviour () {
+
+// }
+
+// localStorage.clear()
 // Create one single func that deals with local storage - pass e.target as argument 
 // Store funcs in obj in global scope 
