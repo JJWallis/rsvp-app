@@ -30,7 +30,7 @@ function appendListItems (localStorageArr) {
     checked.id = name
     editBtn.id = 'btn-edit'
     removeBtn.id = 'btn-remove'
-    ul.appendChild(li)
+    ul.append(li)
     arr.push(name, label, checked, editBtn, removeBtn)
 
     for (let i = 0; i < arr.length; i++) 
@@ -47,8 +47,8 @@ function hideNonRespondeesLabel () {
         label.setAttribute('for', 'non-responded')
         checked.id = 'non-responded'
 
-        parent.appendChild(label, ul)
-        parent.appendChild(checked, ul)
+        parent.append(label)
+        parent.append(checked)
         main.insertBefore(parent, ul)
     }
 
@@ -109,22 +109,21 @@ ul.addEventListener('click', e => {
         if (target.tagName === 'BUTTON') {
             const functions = {
                 edit: target => target.textContent = 'save',
-                save: (target, localStorageArr, name) => { 
+                save: (target, localStorageArr, name, liIndex) => { 
                     target.textContent = 'edit'
                     localStorageArr.splice(liIndex, 1, name)
                     jsonStringify(localStorageArr)
                     }
             }
 
-            const listItems = document.querySelectorAll('li')
-            const listItemsArr = [...listItems]
+            const listItemsArr = Array.from(document.querySelectorAll('li'))
             const liIndex = listItemsArr.indexOf(li)
             const name = li.firstElementChild
             const localStorageArr = jsonParse()
 
             if (target.id === 'btn-edit' ) {
                 name.toggleAttribute('disabled')
-                functions[target.textContent](target, localStorageArr, liIndex, name.value)
+                functions[target.innerText](target, localStorageArr, name.value, liIndex)
             } else { 
                 ul.removeChild(li)
                 localStorageArr.splice(liIndex, 1)
