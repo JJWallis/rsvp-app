@@ -83,7 +83,7 @@ function liBtnBehaviour (target, li) {
 function restoreLocalStorage () {
     if (localStorage.length > 0) {
         const arr = globalFunctions.jsonParse()
-        arr.forEach(element => appendListItems(element))
+        arr.forEach(val => appendListItems(val))
     }
 }
 
@@ -103,7 +103,7 @@ form.addEventListener('submit', e => {
 main.addEventListener('change', e => {
     const hidden = el => el.classList.toggle('hidden')
     const listItems = document.querySelectorAll('li')
-    if (e.target.id === 'non-responded') {
+    if (e.target.matches('#non-responded')) { //=== 'non-responded'
         for (let i = 0; i < listItems.length; i++) {
             const children = listItems[i].children
             const checkbox = children[2]
@@ -129,7 +129,7 @@ ul.addEventListener('change', e => {
 
 ul.addEventListener('click', e => {
         const target = e.target
-        if (target.tagName === 'BUTTON') {
+        if (target.matches('button')) {
             liBtnBehaviour(target, target.parentElement)
         } 
 })
