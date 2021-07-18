@@ -4,19 +4,20 @@ const btnSubmit = document.querySelector('#btn-submit')
 const main = document.getElementById('main')
 const ul = document.querySelector('#invitedList')
 
-function element (type, property, value) {
-    const el = document.createElement(type)
-    el[property] = value
-    return el
+const globalFunctions = {
+    element: function(type, property, value) {
+        const el = document.createElement(type)
+        el[property] = value
+        return el
+    },
+    jsonParse: () => JSON.parse( localStorage.getItem('names') ),
+    jsonStringify: (localStorageArr) => localStorage.names = JSON.stringify(localStorageArr)
 }
 
-const jsonParse = () => JSON.parse( localStorage.getItem('names') ) 
-const jsonStringify = (localStorageArr) => localStorage.names = JSON.stringify(localStorageArr) 
-
 function hideNonRespondeesLabel () {
-    const parent = element('div')
-    const label = element('label', 'textContent', `Hide those who haven't responded`)
-    const checked = element('input', 'type', 'checkbox')
+    const parent = globalFunctions.element('div')
+    const label = globalFunctions.element('label', 'textContent', `Hide those who haven't responded`)
+    const checked = globalFunctions.element('input', 'type', 'checkbox')
 
     label.setAttribute('for', 'non-responded')
     checked.id = 'non-responded'
@@ -30,12 +31,12 @@ hideNonRespondeesLabel()
 
 function appendListItems (localStorageArr) {
     const arr = []
-    const li = element('li')
-    const name = element('input', 'type', 'text')
-    const label = element('label', 'textContent', 'Confirm')
-    const checked = element('input', 'type', 'checkbox')
-    const editBtn = element('button', 'textContent', 'edit')
-    const removeBtn = element('button', 'textContent', 'remove')
+    const li = globalFunctions.element('li')
+    const name = globalFunctions.element('input', 'type', 'text')
+    const label = globalFunctions.element('label', 'textContent', 'Confirm')
+    const checked = globalFunctions.element('input', 'type', 'checkbox')
+    const editBtn = globalFunctions.element('button', 'textContent', 'edit')
+    const removeBtn = globalFunctions.element('button', 'textContent', 'remove')
     const value = (el, data) => el.value = data
 
     localStorageArr ? value(name, localStorageArr) : value(name, txtInput.value)
@@ -48,8 +49,7 @@ function appendListItems (localStorageArr) {
     ul.append(li)
     arr.push(name, label, checked, editBtn, removeBtn)
 
-    for (let i = 0; i < arr.length; i++) 
-        li.appendChild(arr[i])
+    arr.forEach(element => li.append(element))
     
     value(txtInput, '')
 }
@@ -60,14 +60,14 @@ function liBtnBehaviour (target, li) {
         save: (target, localStorageArr, name, liIndex) => { 
             target.textContent = 'edit'
             localStorageArr.splice(liIndex, 1, name)
-            jsonStringify(localStorageArr)
+            globalFunctions.jsonStringify(localStorageArr)
             }
     }
 
     const listItemsArr = Array.from(document.querySelectorAll('li'))
     const liIndex = listItemsArr.indexOf(li)
     const name = li.firstElementChild
-    const localStorageArr = jsonParse()
+    const localStorageArr = globalFunctions.jsonParse()
 
     if (target.id === 'btn-edit' ) {
         name.toggleAttribute('disabled')
@@ -75,16 +75,15 @@ function liBtnBehaviour (target, li) {
     } else { 
         ul.removeChild(li)
         localStorageArr.splice(liIndex, 1)
-        jsonStringify(localStorageArr)
+        globalFunctions.jsonStringify(localStorageArr)
     }
 }
 
 
 function restoreLocalStorage () {
     if (localStorage.length > 0) {
-        const arr = jsonParse()
-        for (let i = 0; i < arr.length; i++) 
-            appendListItems(arr[i])
+        const arr = globalFunctions.jsonParse()
+        arr.forEach(element => appendListItems(element))
     }
 }
 
@@ -94,10 +93,10 @@ restoreLocalStorage()
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-    const localStorageArr = localStorage.length > 0 ? jsonParse() : []
+    const localStorageArr = localStorage.length > 0 ? globalFunctions.jsonParse() : []
     const name = txtInput.value.replace(' ', '')
     localStorageArr.push(name)
-    jsonStringify(localStorageArr) 
+    globalFunctions.jsonStringify(localStorageArr) 
     appendListItems()
 })
 
@@ -135,5 +134,4 @@ ul.addEventListener('click', e => {
         } 
 })
 
-// for each for append List Item func 
 // localStorage.clear() 
