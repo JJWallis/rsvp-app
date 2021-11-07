@@ -11,7 +11,7 @@ const globalFunctions = {
       return el
    },
    jsonParse: () => JSON.parse(localStorage.getItem('names')),
-   jsonStringify: localStorageArr =>
+   jsonStringify: (localStorageArr) =>
       (localStorage.names = JSON.stringify(localStorageArr)),
 }
 
@@ -54,14 +54,14 @@ function appendListItems(localStorageArr) {
    ul.append(li)
    arr.push(name, label, checked, editBtn, removeBtn)
 
-   arr.forEach(element => li.append(element))
+   arr.forEach((element) => li.append(element))
 
    value(txtInput, '')
 }
 
 function liBtnBehaviour(target, li) {
    const functions = {
-      edit: target => (target.textContent = 'save'),
+      edit: (target) => (target.textContent = 'save'),
       save: (target, localStorageArr, name, liIndex) => {
          target.textContent = 'edit'
          localStorageArr.splice(liIndex, 1, name)
@@ -87,7 +87,7 @@ function liBtnBehaviour(target, li) {
 function restoreLocalStorage() {
    if (localStorage.length > 0) {
       const arr = globalFunctions.jsonParse()
-      arr.forEach(val => appendListItems(val))
+      arr.forEach((val) => appendListItems(val))
    }
 }
 
@@ -95,7 +95,7 @@ restoreLocalStorage()
 
 //////////////// EVENT LISTENERS //////////////////////
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', (e) => {
    e.preventDefault()
    const localStorageArr =
       localStorage.length > 0 ? globalFunctions.jsonParse() : []
@@ -105,8 +105,8 @@ form.addEventListener('submit', e => {
    appendListItems()
 })
 
-main.addEventListener('change', e => {
-   const hidden = el => el.classList.toggle('hidden')
+main.addEventListener('change', (e) => {
+   const hidden = (el) => el.classList.toggle('hidden')
    const listItems = document.querySelectorAll('li')
    if (e.target.matches('#non-responded')) {
       //=== 'non-responded'
@@ -123,11 +123,11 @@ main.addEventListener('change', e => {
    }
 })
 
-ul.addEventListener('change', e => {
+ul.addEventListener('change', (e) => {
    const target = e.target
    if (target.type === 'checkbox') {
       const label = target.previousElementSibling
-      const labelText = value => (label.textContent = value)
+      const labelText = (value) => (label.textContent = value)
       target.parentElement.classList.toggle('responded')
       label.textContent === 'Confirm'
          ? labelText('Confirmed')
@@ -135,7 +135,7 @@ ul.addEventListener('change', e => {
    }
 })
 
-ul.addEventListener('click', e => {
+ul.addEventListener('click', (e) => {
    const target = e.target
    if (target.matches('button')) {
       liBtnBehaviour(target, target.parentElement)
