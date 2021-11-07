@@ -143,4 +143,3 @@ ul.addEventListener('click', (e) => {
 })
 
 // localStorage.clear()
-// TODO - change disabled input bg colour
