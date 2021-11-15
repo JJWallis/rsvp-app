@@ -14,7 +14,6 @@ This is a solution to the [RSVP App challenge on Treehouse](https://teamtreehous
    -  [Continued development](#continued-development)
    -  [Useful resources](#useful-resources)
 -  [Author](#author)
--  [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -136,3 +135,5 @@ JS:
 Regex - dynamic id (removing whitespace + - instead)
 
 Local storage - 1st project | clear() + set() with key + get() | what to save - recernt searches + state of app specific (guests) | JSON data + built in methods (PARSE + STRINGIFY) | other methods of storing data - Session + Cookies (less common + security issues + Cookies long as hell)
+
+Testing, testing, testing
