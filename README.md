@@ -63,6 +63,12 @@ li input[type='text']:enabled {
 I was further proud of my ability to chain together multiple different types of selectors, to be dynamic and yet specific in my styling of the text inputs inside each card. In the future it might be better to use descendant class selectors vs type selectors for greater specificity, but for a small project like this the outcome was as desired.
 
 ```js
+const name = txtInput.value.replace(/\s/g, '-')
+```
+
+While still on the topic of the respondee's name, I was able to use a regular expression to dynamically create an id for new respondee that replaced all whitespace within the users input with a '-' to match HTML naming conventions.
+
+```js
  const functions = {
       edit: (target) => (target.textContent = 'save'),
       save: (target, localStorageArr, name, liIndex) => {
@@ -79,6 +85,10 @@ I was further proud of my ability to chain together multiple different types of 
 functions[target.innerText](target, localStorageArr, name.value, liIndex)
 ```
 
+The 'functions' object above was a great technique I implemented to refactor how I stored logic relating to certain aspects of the app, instead of openly declaring the functions in the global scope which would result in more bloated code.
+
+Furthermore, this project was my first introduction to Local Storage in the browser, and how we can take advantage of it to save the state of our app between different sessions. Naturally this also provided a great introduction to the JSON data format, which essentially converts any data into a string to be successfully stored. Therefore we have to parse that data back into a non-JSON format to be used again throughout our app, using the conveniently named built in JSON constructor function.
+
 ```js
 localStorageArr ? value(name, localStorageArr) : value(name, txtInput.value)
 ```
@@ -89,10 +99,6 @@ Ternary -
 name.setAttribute('disabled', 'disabled')
 // 1st time using this method - next time do as boolean (shorter)
 ```
-
-The 'functions' object above was a great technique I implemented to refactor how I stored logic relating to certain aspects of the app, instead of openly declaring the functions in the global scope which would result in more bloated code.
-
-Furthermore, this project was my first introduction to Local Storage in the browser, and how we can take advantage of it to save the state of our app between different sessions. Naturally this also provided a great introduction to the JSON data format, which essentially converts any data into a string to be successfully stored. Therefore we have to parse that data back into a non-JSON format to be used again throughout our app, using the conveniently named built in JSON constructor function.
 
 ### Continued development
 
@@ -124,9 +130,5 @@ Edit btn text content changing when clicked (doesn't have to be based off whethe
 1st time layering gradient on top of bg-img
 
 JS:
-
-1st 'app' - heavy JS focus + usr interactity | submit btn for validation (str txt input) | most content built + appended via JS - naked starting HTML (handling that much content dynamically)
-
-Regex - dynamic id (removing whitespace + - instead)
 
 Local storage - 1st project | clear() + set() with key + get() | what to save - recernt searches + state of app specific (guests) | JSON data + built in methods (PARSE + STRINGIFY) | other methods of storing data - Session + Cookies (less common + security issues + Cookies long as hell)
