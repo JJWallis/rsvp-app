@@ -55,20 +55,12 @@ Your users should be able to:
 It was during this project where I first learnt about the different ways of loading Javascript in co-ordination with the rest of the HTML. By default, the HTML parser will load every resource and asset it encounters immediately before moving onto the next line, which will be very inefficient in larger projects where the amount of data to load will significantly increase. The 'defer' attribute allows the parser to completely finish loading all other markup and external resources whilst downloading the script, before ultimately returning to execute it once everything else is complete.
 
 ```css
-header {
-   text-align: center;
-   background: linear-gradient(90deg, #d4eece, #55b3d0, #1e7eb7),
-      url('../images/header-bg.jpg') no-repeat;
-   background-blend-mode: multiply;
-   background-size: cover;
-}
-/* layering gradient + bg-img */
-
 li input[type='text']:enabled {
    border: 1px dotted rgba(0, 0, 0, 0.2);
 }
-/* attr selectors */
 ```
+
+I was further proud of my ability to chain together multiple different types of selectors, to be dynamic and yet specific in my styling of the text inputs inside each card. In the future it might be better to use descendant class selectors vs type selectors for greater specificity, but for a small project like this the outcome was as desired.
 
 ```js
  const functions = {
@@ -85,17 +77,22 @@ li input[type='text']:enabled {
 }
 
 functions[target.innerText](target, localStorageArr, name.value, liIndex)
+```
 
-// refactoring re-used generic funcs into obj (+ local-storage) | ran dyancmialyl with [] notation + dynamic str (matched key name to what comparing to - innerText)
-
+```js
 localStorageArr ? value(name, localStorageArr) : value(name, txtInput.value)
+```
 
-// 1st conditional ternary operator
+Ternary -
 
+```js
 name.setAttribute('disabled', 'disabled')
-
 // 1st time using this method - next time do as boolean (shorter)
 ```
+
+The 'functions' object above was a great technique I implemented to refactor how I stored logic relating to certain aspects of the app, instead of openly declaring the functions in the global scope which would result in more bloated code.
+
+Furthermore, this project was my first introduction to Local Storage in the browser, and how we can take advantage of it to save the state of our app between different sessions. Naturally this also provided a great introduction to the JSON data format, which essentially converts any data into a string to be successfully stored. Therefore we have to parse that data back into a non-JSON format to be used again throughout our app, using the conveniently named built in JSON constructor function.
 
 ### Continued development
 
@@ -115,10 +112,6 @@ Greater use cases for local storage + always thinking about using it
 -  Linkedin - [Joshua Jameson-Wallis]()
 
 ###### TODO
-
-HTML:
-
-Defer on script - vs async + normal
 
 CSS:
 
