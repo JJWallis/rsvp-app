@@ -93,42 +93,21 @@ Furthermore, this project was my first introduction to Local Storage in the brow
 localStorageArr ? value(name, localStorageArr) : value(name, txtInput.value)
 ```
 
-Ternary -
-
-```js
-name.setAttribute('disabled', 'disabled')
-// 1st time using this method - next time do as boolean (shorter)
-```
+After what felt like a decade in waiting to be introduced to different ways of writing conditional statements, I was finally introduced to the ternary operator which allows us to performing conditional logic and assign/return a resulting value using a much more concise syntax.
 
 ### Continued development
 
-CSS - Not overusing type selectors (not specific)
+In addition to conditionally running a function, we can also dynamically assign values to variables amongst other features as well, which I look forward to practicing more of in future projects.
 
-Greater use cases for local storage + always thinking about using it
+I also want to discover more use cases for Local Storage (saving a list of recent inputted data), amongst other methods of storing data such as Session Storage and Cookies which are both less common and sometimes present important security issues to be wary of.
 
 ### Useful resources
 
--  [Fastest Way to Load Javascript](https://www.youtube.com/watch?v=BMuFBYw91UQ&ab_channel=WebDevSimplified) - This informed me about different ways of loading JS. Async vs Defer vs normal (+ HTML parsing logic). Modules defer by default - use in later projects.
+-  [Fastest Way to Load Javascript](https://www.youtube.com/watch?v=BMuFBYw91UQ&ab_channel=WebDevSimplified) - This video informed me about the different ways of loading Javascript, regarding the `async` vs `defer` attributes.
 
--  [Cookies vs Local Storage vs Session Storage](https://www.youtube.com/watch?v=GihQAC1I39Q&ab_channel=WebDevSimplified) - This informed me about different ways of storing data via JS in the browser.
+-  [Cookies vs Local Storage vs Session Storage](https://www.youtube.com/watch?v=GihQAC1I39Q&ab_channel=WebDevSimplified) - This video was my introduction to the different ways of storing data via Javascript in the browser.
 
 ## Author
 
 -  Website - [Joshua Jameson-Wallis](https://joshuajamesonwallis.com)
 -  Linkedin - [Joshua Jameson-Wallis]()
-
-###### TODO
-
-CSS:
-
-Disabled input styling (greyed out) - txt input on RSVPs to change their name
-
-Confirmed checkbox - blue outline (good boolean logic practice) | first 'filtering' logic practice - hide containers whose checkbox isn't in a checked (truthy) state
-
-Edit btn text content changing when clicked (doesn't have to be based off whether input in disabled state or not - usr will only click when change desired)
-
-1st time layering gradient on top of bg-img
-
-JS:
-
-Local storage - 1st project | clear() + set() with key + get() | what to save - recernt searches + state of app specific (guests) | JSON data + built in methods (PARSE + STRINGIFY) | other methods of storing data - Session + Cookies (less common + security issues + Cookies long as hell)
