@@ -24,7 +24,7 @@ Your users should be able to:
 -  Enter a guests name & create a new response card based on their input
 -  Toggle the visibility of guests that have not yet responded
 -  Confirm whether individual guests have responded
--  Update the details of guests who have responded
+-  Update the name of guests who have responded
 -  Remove guests from the list who no longer wish to attend
 
 ### Screenshot
@@ -51,6 +51,8 @@ Your users should be able to:
 <script defer src="app.js" type="text/javascript"></script>
 <!-- defer -->
 ```
+
+It was during this project where I first learnt about the different ways of loading Javascript in co-ordination with the rest of the HTML. By default, the HTML parser will load every resource and asset it encounters immediately before moving onto the next line, which will be very inefficient in larger projects where the amount of data to load will significantly increase. The 'defer' attribute allows the parser to completely finish loading all other markup and external resources whilst downloading the script, before ultimately returning to execute it once everything else is complete.
 
 ```css
 header {
