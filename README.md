@@ -21,7 +21,7 @@ This is a solution to the [RSVP App challenge on Treehouse](https://teamtreehous
 
 Your users should be able to:
 
--  Enter a guests name & create a new response card based on their input
+-  Enter a guests' name & create a new response card based on their input
 -  Toggle the visibility of guests that have not yet responded
 -  Confirm whether individual guests have responded
 -  Update the name of guests who have responded
@@ -51,7 +51,7 @@ Your users should be able to:
 <script defer src="app.js" type="text/javascript"></script>
 ```
 
-It was during this project where I first learnt about the different ways of loading JavaScript in co-ordination with the rest of the HTML. By default, the HTML parser will load every resource and asset it encounters immediately before moving onto the next line, which will be very inefficient in larger projects where the amount of data to load will significantly increase. The `defer` attribute allows the parser to completely finish loading all other markup and external resources whilst downloading the script, before ultimately returning to execute it once everything else is complete.
+It was during this project where I first learnt about the different ways of loading JavaScript in co-ordination with the rest of the HTML. By default, the HTML parser will load every resource and asset it encounters immediately before moving onto the next line, which will be very inefficient in larger projects where the amount of data to load will significantly increase. The `defer` attribute allows the parser to completely finish loading all other markup and external resources whilst downloading the script, before ultimately returning to execute it once everything else has loaded.
 
 ```css
 li input[type='text']:enabled {
@@ -59,13 +59,13 @@ li input[type='text']:enabled {
 }
 ```
 
-I was further proud of my ability to chain together multiple different types of selectors, to be dynamic and yet specific in my styling of the text inputs inside each card. In the future, it might be better to use descendant class selectors vs type selectors for greater specificity, but for a small project like this the outcome was as desired.
+I was further proud of my ability to chain together multiple different types of selectors, to be dynamic and yet specific in my styling of the text inputs inside each card. In the future, it might be better to use descendant class selectors versus type selectors for greater specificity, but for a small project like this the outcome was as desired.
 
 ```js
 const name = txtInput.value.replace(/\s/g, '-')
 ```
 
-While still on the topic of the respondee's name, I was able to use a regular expression to dynamically create an id for each new respondee, that replaced all whitespace within the users input with a '-' to match HTML naming conventions.
+While still on the topic of the respondee's name, I was able to use a regular expression to dynamically create an id for each new respondee, that replaced all whitespace within the user's input with a '-' to match HTML naming conventions.
 
 ```js
  const functions = {
@@ -88,17 +88,9 @@ The 'functions' object above was a great piece of logic I implemented to refacto
 
 Furthermore, this project was my first introduction to Local Storage in the browser, and how we can take advantage of it to save the state of our app between different sessions. Naturally, this also provided a great introduction to the JSON data format, which essentially converts any data into a string to be successfully stored. Therefore, we have to parse that data back into a non-JSON format to be used again throughout our app, using the conveniently named `JSON.parese()` method built into the JSON constructor function.
 
-```js
-localStorageArr ? value(name, localStorageArr) : value(name, txtInput.value)
-```
-
-After what felt like a decade in waiting to be introduced to different ways of writing conditional statements, I was finally introduced to the ternary operator which allows us to performing conditional logic and assign or return a resulting value using a much more concise syntax.
-
 ### Continued development
 
-In addition to conditionally running a function, we can also dynamically assign values to variables amongst other features as well, which I look forward to practicing more of in future projects.
-
-I also want to discover more use cases for Local Storage amongst other methods of storing data such as Session Storage and Cookies, which are both less common and sometimes present important security issues to be wary of.
+I look forward to discovering more use cases for Local Storage, amongst other methods of storing data such as Session Storage and Cookies, alongside the differences between each as well.
 
 ### Useful resources
 
@@ -109,4 +101,4 @@ I also want to discover more use cases for Local Storage amongst other methods o
 ## Author
 
 -  Website - [Joshua Jameson-Wallis](https://joshuajamesonwallis.com)
--  Linkedin - [Joshua Jameson-Wallis]()
+-  Linkedin - [Joshua Jameson-Wallis](https://www.linkedin.com/in/joshua-jameson-wallis/)
