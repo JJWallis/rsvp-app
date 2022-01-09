@@ -86,19 +86,19 @@ I was able to use a regular expression to dynamically create an id for each new 
 functions[target.innerText](target, localStorageArr, name.value, liIndex)
 ```
 
-The 'functions' object above was a great piece of logic I implemented to refactor how I stored logic relating to certain aspects of the app, instead of openly declaring the functions in the global scope which would result in more bloated code.
+I used the 'functions' object above to store logic relating to certain aspects of the app, instead of openly declaring the functions in the global scope which would result in more bloated code.
 
-Furthermore, this project was my first introduction to Local Storage in the browser, and how we can take advantage of it to save the state of our app between different sessions. Naturally, this also provided a great introduction to the JSON data format, which essentially converts any data into a string to be successfully stored. Therefore, we have to parse that data back into a non-JSON format to be used again throughout our app, using the conveniently named `JSON.parese()` method built into the JSON constructor function.
+This project was my first introduction to Local Storage in the browser, and how we can take advantage of it to save the state of our app between different sessions. Naturally, this also provided a great introduction to the JSON data format which requires any data to be converted into a JSON string format before it can successfully be stored. We therefore have to parse that data back into a non-JSON format to be used again throughout our app.
 
 ### Continued development
 
-I look forward to discovering more use cases for Local Storage, amongst other methods of storing data such as Session Storage and Cookies, alongside the differences between each as well.
+I look forward to discovering more use cases for Local Storage amongst other methods of storing data such as Session Storage and Cookies.
 
 ### Useful resources
 
--  [Fastest Way to Load JavaScript](https://www.youtube.com/watch?v=BMuFBYw91UQ&ab_channel=WebDevSimplified) - This video informed me about the different ways of loading Javascript, regarding the `async` vs `defer` attributes.
+-  [Fastest Way to Load JavaScript](https://www.youtube.com/watch?v=BMuFBYw91UQ&ab_channel=WebDevSimplified) - This video informed me about the different ways of loading Javascript regarding the `async` and `defer` attributes.
 
--  [Cookies vs Local Storage vs Session Storage](https://www.youtube.com/watch?v=GihQAC1I39Q&ab_channel=WebDevSimplified) - This video was my introduction to the different ways of storing data via JavaScript in the browser.
+-  [Cookies vs Local Storage vs Session Storage](https://www.youtube.com/watch?v=GihQAC1I39Q&ab_channel=WebDevSimplified) - This video was my introduction to the different ways of storing data with JavaScript in the browser.
 
 ## Author
 
