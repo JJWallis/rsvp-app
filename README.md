@@ -102,5 +102,5 @@ I look forward to discovering more use cases for Local Storage amongst other met
 
 ## Author
 
--  Website - [Joshua Jameson-Wallis](https://joshuajamesonwallis.com)
+-  Website - [Joshua Jameson-Wallis](https://www.joshuajamesonwallis.com/)
 -  Linkedin - [Joshua Jameson-Wallis](https://www.linkedin.com/in/joshua-jameson-wallis/)
